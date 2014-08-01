@@ -41,7 +41,7 @@ $(document).ready(function(){
     $(this).addClass("clicked");
 
     if(solvedLevel(1, 3)) {
-      advanceToNextLevel(2)
+      advanceToNextLevel(2);
     }
 
   });
@@ -58,7 +58,7 @@ $(document).ready(function(){
     });
 
     if(solvedLevel(2, 4)) {
-      advanceToNextLevel(3)
+      advanceToNextLevel(3);
     }
 
   });

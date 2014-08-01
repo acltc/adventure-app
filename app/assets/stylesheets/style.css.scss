@@ -1,6 +1,6 @@
 body {
   font-family: Papyrus, fantasy;
-  color: #e5a9a9;
+  color: #F0AD4E;
   background-image: image-url("tex2res4.png");
 }
 
@@ -10,15 +10,16 @@ h1 {
 }
 
 #welcome {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .btn-container {
-  padding-top: 30px;
+  padding-top: 230px;
   width: 400px;
   margin: auto;
 }
 
 #begin-btn {
+  padding: 20px;
   font-size: 54px;
 }

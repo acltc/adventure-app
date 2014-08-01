@@ -6,23 +6,40 @@ $(document).ready(function(){
     });
   });
 
+  function solvedLevel(puzzleId, numberOfBlocks) {
+
+    var clickedBlocks = 0;
+
+    $("#puzzle-" + puzzleId.toString() + " .block").each(function() {
+      if($(this).hasClass("clicked")) {
+        clickedBlocks = clickedBlocks + 1;
+      }
+    });
+
+    return (clickedBlocks === numberOfBlocks);
+  }
+
+  function advanceToNextLevel(nextLevel) {
+    $("#puzzle-" + (nextLevel - 1).toString()).fadeOut(function() {
+      $("#puzzle-" + nextLevel.toString()).fadeIn();
+    });
+  }
+
+  function winTheGame() {
+    $("#puzzle-3").fadeOut(function() {
+      $("#win-1").fadeIn("slow", function(){
+        $("#win-2").fadeIn("slow");
+      });
+    });
+  }
+
   // Puzzle 1
 
     $("#puzzle-1 .block").click(function() {
       $(this).addClass("clicked");
 
-      var clickedBlocks = 0;
-
-      $("#puzzle-1 .block").each(function() {
-        if($(this).hasClass("clicked")) {
-          clickedBlocks = clickedBlocks + 1;
-        }
-      });
-
-      if(clickedBlocks === 3) {
-        $("#puzzle-1").fadeOut(function() {
-          $("#puzzle-2").fadeIn();
-        });
+      if(solvedLevel(1, 3)) {
+        advanceToNextLevel(2)
       }
 
     });
@@ -38,18 +55,8 @@ $(document).ready(function(){
         }
       });
 
-      var clickedBlocks = 0;
-
-      $("#puzzle-2 .block").each(function() {
-        if($(this).hasClass("clicked")) {
-          clickedBlocks = clickedBlocks + 1;
-        }
-      });
-
-      if(clickedBlocks === 4) {
-        $("#puzzle-2").fadeOut(function() {
-          $("#puzzle-3").fadeIn();
-        });
+      if(solvedLevel(2, 4)) {
+        advanceToNextLevel(3)
       }
 
     });
@@ -65,21 +72,8 @@ $(document).ready(function(){
         }
       });
 
-      var clickedBlocks = 0;
-
-      $("#puzzle-3 .block").each(function() {
-        if($(this).hasClass("clicked")) {
-          clickedBlocks = clickedBlocks + 1;
-        }
-      });
-
-      if(clickedBlocks === 8) {
-        $("#win").show();
-        $("#puzzle-3").fadeOut(function() {
-          $("#win-1").fadeIn("slow", function(){
-            $("#win-2").fadeIn("slow");
-          });
-        });
+      if(solvedLevel(3, 8)) {
+        winTheGame();
       }
 
     });

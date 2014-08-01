@@ -1,0 +1,13 @@
+#puzzle-3 {
+
+  .block {
+    width: 190px;
+    height: 190px;
+    background-color: #d61eea;
+    margin: 0px;
+  }
+
+  .block.clicked {
+    background-color: #1be5c7;
+  }
+}

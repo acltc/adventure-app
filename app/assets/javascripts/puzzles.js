@@ -45,9 +45,36 @@ $(document).ready(function(){
       });
 
       if(clickedBlocks === 4) {
+        $("#puzzle-2").hide();
+        $("#puzzle-3").show();
+      }
+
+    });
+
+  // Puzzle 3
+
+    $("#puzzle-3 .block").click(function() {
+      var clickedBlockId = $(this).attr("id");
+
+      $("#puzzle-3 .block").each(function() {
+        if($(this).attr("id") !== clickedBlockId) {
+          $(this).toggleClass("clicked");
+        }
+      });
+
+      var clickedBlocks = 0;
+
+      $("#puzzle-3 .block").each(function() {
+        if($(this).hasClass("clicked")) {
+          clickedBlocks = clickedBlocks + 1;
+        }
+      });
+
+      if(clickedBlocks === 8) {
         alert("You win!");
       }
 
     });
+
 
 });

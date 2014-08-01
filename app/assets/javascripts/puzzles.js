@@ -2,17 +2,15 @@ $(function() {
   playGame();
 });
 
-function solvedLevel(puzzleId, numberOfBlocks) {
+function solvedPuzzle(puzzle) {
+  var solved = true;
 
-  var clickedBlocks = 0;
+  for(i = 0; i < puzzle.blocks.length; i++) {
+    if(puzzle.blocks[i] === 0) {solved = false;}
+  }
 
-  $("#puzzle-" + puzzleId.toString() + " .block").each(function() {
-    if($(this).hasClass("clicked")) {
-      clickedBlocks++;
-    }
-  });
-
-  return (clickedBlocks === numberOfBlocks);
+  return solved;
+  
 }
 
 function advanceToNextLevel(nextLevel) {
@@ -30,6 +28,12 @@ function winTheGame() {
 }
 
 function playGame() {
+
+  var PuzzleOne = {
+    section: "puzzle-1",
+    level: 1,
+    blocks: [0, 0, 0]
+  }
   // Begin the game
 
   $("#begin-btn").click(function(){
@@ -41,9 +45,12 @@ function playGame() {
   // Puzzle 1
 
   $("#puzzle-1 .block").click(function() {
+    var clickedBlockId = parseInt($(this).attr("id"));
+
+    PuzzleOne.blocks[clickedBlockId] = 1;
     $(this).addClass("clicked");
 
-    if(solvedLevel(1, 3)) {
+    if(solvedPuzzle(PuzzleOne)) {
       advanceToNextLevel(2);
     }
 
@@ -60,7 +67,7 @@ function playGame() {
       }
     });
 
-    if(solvedLevel(2, 4)) {
+    if(solvedPuzzle(2, 4)) {
       advanceToNextLevel(3);
     }
 
@@ -77,7 +84,7 @@ function playGame() {
       }
     });
 
-    if(solvedLevel(3, 8)) {
+    if(solvedPuzzle(3, 8)) {
       winTheGame();
     }
 

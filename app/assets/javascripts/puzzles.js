@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
   $("#begin-btn").click(function(){
-    $("#begin-btn").hide();
-    $("#puzzle-1").show();
+    $("#begin-btn").fadeOut(function() {
+      $("#puzzle-1").fadeIn();
+    });
   });
 
   // Puzzle 1
@@ -19,8 +20,9 @@ $(document).ready(function(){
       });
 
       if(clickedBlocks === 3) {
-        $("#puzzle-1").hide();
-        $("#puzzle-2").show();
+        $("#puzzle-1").fadeOut(function() {
+          $("#puzzle-2").fadeIn();
+        });
       }
 
     });
@@ -45,8 +47,9 @@ $(document).ready(function(){
       });
 
       if(clickedBlocks === 4) {
-        $("#puzzle-2").hide();
-        $("#puzzle-3").show();
+        $("#puzzle-2").fadeOut(function() {
+          $("#puzzle-3").fadeIn();
+        });
       }
 
     });
@@ -71,10 +74,14 @@ $(document).ready(function(){
       });
 
       if(clickedBlocks === 8) {
-        alert("You win!");
+        $("#win").show();
+        $("#puzzle-3").fadeOut(function() {
+          $("#win-1").fadeIn("slow", function(){
+            $("#win-2").fadeIn("slow");
+          });
+        });
       }
 
     });
-
 
 });

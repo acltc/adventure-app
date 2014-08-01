@@ -28,8 +28,7 @@ $(document).ready(function(){
   // Puzzle 2
 
     $("#puzzle-2 .block").click(function() {
-      clickedBlockId = $(this).attr("id");
-        console.log(clickedBlockId);
+      var clickedBlockId = $(this).attr("id");
 
       $("#puzzle-2 .block").each(function() {
         if($(this).attr("id") !== clickedBlockId) {

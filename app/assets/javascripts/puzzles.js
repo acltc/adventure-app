@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     $("#puzzle-" + puzzleId.toString() + " .block").each(function() {
       if($(this).hasClass("clicked")) {
-        clickedBlocks = clickedBlocks + 1;
+        clickedBlocks++;
       }
     });
 

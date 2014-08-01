@@ -18,7 +18,34 @@ $(document).ready(function(){
         }
       });
 
-      if(clickedBlocks == 3) {
+      if(clickedBlocks === 3) {
+        $("#puzzle-1").hide();
+        $("#puzzle-2").show();
+      }
+
+    });
+
+  // Puzzle 2
+
+    $("#puzzle-2 .block").click(function() {
+      clickedBlockId = $(this).attr("id");
+        console.log(clickedBlockId);
+
+      $("#puzzle-2 .block").each(function() {
+        if($(this).attr("id") !== clickedBlockId) {
+          $(this).toggleClass("clicked");
+        }
+      });
+
+      var clickedBlocks = 0;
+
+      $("#puzzle-2 .block").each(function() {
+        if($(this).hasClass("clicked")) {
+          clickedBlocks = clickedBlocks + 1;
+        }
+      });
+
+      if(clickedBlocks === 4) {
         alert("You win!");
       }
 

@@ -95,9 +95,13 @@ var gameApp = {
 
     $(".block").click(function() {
       var clickedBlockId = $("#puzzle-" + gameApp.currentPuzzleId.toString() + " .block").index($(this));
-
       gameApp.currentPuzzle().toggle(clickedBlockId);
-      gameApp.updateDisplay();
+
+      $(this).fadeOut("fast", function() {
+        $(this).fadeIn("fast", function() {
+          gameApp.updateDisplay();
+        });
+      });
 
       if(gameApp.solvedPuzzle(gameApp.currentPuzzle())) {
         gameApp.advanceToNextLevel();

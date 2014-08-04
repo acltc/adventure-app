@@ -14,7 +14,7 @@ var gameApp = {
     var solved = true;
 
     for(var i = 0; i < puzzle.blocks.length; i++) {
-      if(puzzle.blocks[i] === 0) {solved = false;}
+      if(puzzle.blocks[i] !== "white") {solved = false;}
     }
 
     return solved;
@@ -46,7 +46,7 @@ var gameApp = {
       section: "puzzle-0",
       blocks: [0, 0, 0],
       toggle: function(blockId) {
-        this.blocks[blockId] = 1;
+        this.blocks[blockId] = "white";
       }
     },
 
@@ -56,7 +56,7 @@ var gameApp = {
       toggle: function(blockId) {
         for(var i = 0; i < this.blocks.length; i++) {
           if(i !== blockId) {
-            this.blocks[i] = this.blocks[i] == 0 ? 1 : 0;
+            this.blocks[i] = this.blocks[i] == 0 ? "white" : 0;
           }
         }
       }
@@ -68,7 +68,25 @@ var gameApp = {
       toggle: function(blockId) {
         for(var i = 0; i < this.blocks.length; i++) {
           if(i !== blockId) {
-            this.blocks[i] = this.blocks[i] == 0 ? 1 : 0;
+            this.blocks[i] = this.blocks[i] == 0 ? "white" : 0;
+          }
+        }
+      }
+    },
+
+    {
+      section: "puzzle-3",
+      blocks: [0, 1, 0, 1],
+      toggle: function(blockId) {
+        for(var i = 0; i < this.blocks.length; i++) {
+          if(i !== blockId) {
+            if(this.blocks[i] === 0) {
+              this.blocks[i] = 1;
+            } else if (this.blocks[i] === 1) {
+              this.blocks[i] = "white";
+            } else if (this.blocks[i] === "white") {
+              this.blocks[i] = 0;
+            }
           }
         }
       }
@@ -77,11 +95,8 @@ var gameApp = {
 
   updateDisplay: function() {
     for(var i = 0; i < gameApp.currentPuzzle().blocks.length; i++) {
-      if (gameApp.currentPuzzle().blocks[i] === 0) {
-        $("#puzzle-" + gameApp.currentPuzzleId.toString() + " .block:eq(" + i.toString() + ")").removeClass("clicked");
-      } else {
-        $("#puzzle-" + gameApp.currentPuzzleId.toString() + " .block:eq(" + i.toString() + ")").addClass("clicked");
-      }
+      $("#puzzle-" + gameApp.currentPuzzleId.toString() + " .block:eq(" + i.toString() + ")").removeClass("block-white").removeClass("block-0").removeClass("block-1");
+      $("#puzzle-" + gameApp.currentPuzzleId.toString() + " .block:eq(" + i.toString() + ")").addClass("block-" + gameApp.currentPuzzle().blocks[i]);
     }
   },
 

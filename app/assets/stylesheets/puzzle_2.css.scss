@@ -1,13 +1,13 @@
-#puzzle-1 {
+#puzzle-2 {
 
   .block {
     width: 190px;
     height: 190px;
-    background-color: #2dbc4e;
+    background-color: #d61eea;
     margin: 0px;
   }
 
-  .block.clicked {
+  .block.block.block-white {
     background-color: #fff;
   }
 }
